@@ -28,11 +28,13 @@ def main():
 
     Renamer.start()
     me = Renamer.get_me()
+
     Renamer.add_handler(MessageHandler(
-        down_load_media_f,
+        media,
         filters=filters.command(['rename', f'rename@{me.username}'])
         & filters.chat(chats=AUTH_GROUP),
     )
+
     startup_msg = f"Successfully deployed your Renamer at @{me.username}\n"
     startup_msg += f"Pyrogram Version: V{__version__}\n"
     startup_msg += f"Python Version: V{platform.python_version()}\n\n"
