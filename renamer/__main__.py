@@ -33,7 +33,7 @@ def main():
         media,
         filters=filters.command(['rename', f'rename@{me.username}'])
         & filters.chat(chats=AUTH_GROUP),
-    )
+    ))
 
     startup_msg = f"Successfully deployed your Renamer at @{me.username}\n"
     startup_msg += f"Pyrogram Version: V{__version__}\n"
