@@ -12,6 +12,7 @@ logging.getLogger().setLevel(logging.WARNING)
 import platform
 from .config import Config
 from pyrogram import Client, __version__, idle
+from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from pyromod import listen
 
 
@@ -26,7 +27,11 @@ def main():
 
     Renamer.start()
     me = Renamer.get_me()
-
+    Renamer.add_handler(MessageHandler(
+        down_load_media_f,
+        filters=filters.command(['rename', f'rename@{me.username}'])
+        & filters.chat(chats=AUTH_CHANNEL),
+    )
     startup_msg = f"Successfully deployed your Renamer at @{me.username}\n"
     startup_msg += f"Pyrogram Version: V{__version__}\n"
     startup_msg += f"Python Version: V{platform.python_version()}\n\n"
