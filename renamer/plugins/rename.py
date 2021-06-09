@@ -41,7 +41,7 @@ async def media(c, m):
     if not m.reply_to_message:
         return await m.reply_text("Reply to a media file in the format `/rename Newfilename`")
 
-    if not m.reply_to_message.document or not m.reply_to_message.video:
+    if not m.reply_to_message.document and not m.reply_to_message.video:
         return await m.reply_text("Reply to a Video or document file in the format `/rename Newfilename`")
 
     if Config.TIME_GAP:
