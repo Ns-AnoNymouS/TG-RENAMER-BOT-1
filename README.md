@@ -75,6 +75,7 @@ Press the following button to deploy in heroku.
 ## Available Commands 🤖
 ```
 start - check whether bot is alive or not
+rename - reply to the media with new name
 mode - change video upload mode to file or video
 showthumbnail - to check permanent thumbnail
 deletethumbnail - to delete the permanent thumbnail
