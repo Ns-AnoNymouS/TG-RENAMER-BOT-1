@@ -44,7 +44,7 @@ async def force_sub(c, m):
 
 @RenamerNs.on_message(~filters.chat(chats=Config.AUTH_GROUP))
 async def spam_user(c, m):
-    button = [[
+    buttons = [[
         InlineKeyboardButton('Repo', url='https://github.com/Ns-Bots/TG-RENAMER-BOT'),
         InlineKeyboardButton('Deploy', url='https://heroku.com/deploy?template=https://github.com/Ns-Bots/TG-RENAMER-BOT')
         ],[
