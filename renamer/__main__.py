@@ -71,6 +71,24 @@ def main():
         & filters.chat(chats=Config.AUTH_GROUP),
     ))
 
+    Renamer.add_handler(MessageHandler(
+        password,
+        filters=filters.command(['savethumbnail', f'savethumbnail@{me.username}'])
+        & filters.chat(chats=Config.AUTH_GROUP),
+    ))
+
+    Renamer.add_handler(MessageHandler(
+        password,
+        filters=filters.command(['deletethumbnail', f'deletethumbnail@{me.username}'])
+        & filters.chat(chats=Config.AUTH_GROUP),
+    ))
+
+    Renamer.add_handler(MessageHandler(
+        password,
+        filters=filters.command(['showthumbnail', f'showthumbnail@{me.username}'])
+        & filters.chat(chats=Config.AUTH_GROUP),
+    ))
+
     startup_msg = f"Successfully deployed your Renamer at @{me.username}\n"
     startup_msg += f"Pyrogram Version: V{__version__}\n"
     startup_msg += f"Python Version: V{platform.python_version()}\n\n"
