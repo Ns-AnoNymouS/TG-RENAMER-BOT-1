@@ -60,8 +60,14 @@ def main():
     ))
 
     Renamer.add_handler(MessageHandler(
-        set_mode,
-        filters=filters.command(['mode', f'mode@{me.username}'])
+        reset_user,
+        filters=filters.command(['reset', f'reset@{me.username}'])
+        & filters.chat(chats=Config.AUTH_GROUP),
+    ))
+
+    Renamer.add_handler(MessageHandler(
+        password,
+        filters=filters.command(['login', f'login@{me.username}'])
         & filters.chat(chats=Config.AUTH_GROUP),
     ))
 
