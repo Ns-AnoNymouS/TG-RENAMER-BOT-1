@@ -22,13 +22,13 @@
         "API_ID": {
             "description": "Your API_ID, Get it from https://my.telegram.org/"
         },
+        "AUTH_GROUP": {
+            "description": "Your Telegram group id in which bot should work."
+        },
         "AUTH_USERS": {
             "description": "list of Auth users who can access bot without password and have rights to use admin commands",
             "required": false
         },
-        "AUTH_GROUP": {
-            "description": "Your Telegram group id in which bot should work."
-        }
         "BANNED_USERS": {
             "description": "list of banned users whom you want to stop from using your bot sperate each user by whitespace.",
             "required": false
