@@ -72,19 +72,19 @@ def main():
     ))
 
     Renamer.add_handler(MessageHandler(
-        password,
+        save_photo,
         filters=filters.command(['savethumbnail', f'savethumbnail@{me.username}'])
         & filters.chat(chats=Config.AUTH_GROUP),
     ))
 
     Renamer.add_handler(MessageHandler(
-        password,
+        delete_thumbnail,
         filters=filters.command(['deletethumbnail', f'deletethumbnail@{me.username}'])
         & filters.chat(chats=Config.AUTH_GROUP),
     ))
 
     Renamer.add_handler(MessageHandler(
-        password,
+        show_thumbnail,
         filters=filters.command(['showthumbnail', f'showthumbnail@{me.username}'])
         & filters.chat(chats=Config.AUTH_GROUP),
     ))
