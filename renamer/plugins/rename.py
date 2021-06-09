@@ -17,7 +17,6 @@ from pyrogram.errors import PeerIdInvalid, ChannelInvalid, FloodWait
 from pyrogram.emoji import *
 
 
-@RenamerNs.on_message((filters.document|filters.video) & filters.private & filters.incoming)
 async def media(c, m):
     """Checking and Processing the renaming"""
 
