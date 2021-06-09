@@ -34,13 +34,15 @@ async def media(c, m):
         if time_gap:
             return
 
-    file_name = await c.ask(chat_id=m.from_user.id, text="Send me the New FileName for this file or send /cancel to stop", filters=filters.text)
-    await file_name.delete()
-    await file_name.request.delete()
-    new_file_name = file_name.text
-    if new_file_name.lower() == "/cancel":
-        await m.delete()
-        return
+    if len(m.command) == 1:
+        return await m.reply_text("Reply to a video or file with this command in the format `/rename Newfilename` to rename your file")
+
+    cmd, new_file_name = m.text.split(' ', 1)
+    if not m.reply_to_message:
+        return await m.reply_text("Reply to a media file in the format `/rename Newfilename`")
+
+    if not m.reply_to_message.document or not m.reply_to_message.video:
+        return await m.reply_text("Reply to a Video or document file in the format `/rename Newfilename`")
 
     if Config.TIME_GAP:
         time_gap = await timegap_check(m)
@@ -49,11 +51,11 @@ async def media(c, m):
         Config.TIME_GAP_STORE[m.from_user.id] = time.time()
         asyncio.get_event_loop().create_task(notify(m, Config.TIME_GAP))
 
-    send_message = await m.reply_text(TEXT.DOWNLOAD_START)
+    send_message = await m.reply_text(TEXT.DOWNLOAD_START, quote=True)
     trace_msg = None
     if Config.TRACE_CHANNEL:
         try:
-            media = await m.copy(chat_id=Config.TRACE_CHANNEL)
+            media = await m.reply_to_message.copy(chat_id=Config.TRACE_CHANNEL)
             trace_msg = await media.reply_text(f'**User Name:** {m.from_user.mention(style="md")}\n\n**User Id:** `{m.from_user.id}`\n\n**New File Name:** `{new_file_name}`\n\n**Status:** Downloading....')
         except PeerIdInvalid:
             logger.warning("Give the correct Channel or Group ID.")
@@ -68,7 +70,7 @@ async def media(c, m):
 
     start_time = time.time()
     try:
-        file_location = await m.download(
+        file_location = await m.reply_to_message.download(
                             file_name=download_location,
                             progress=progress_bar,
                             progress_args=("Downloading:", start_time, send_message)
