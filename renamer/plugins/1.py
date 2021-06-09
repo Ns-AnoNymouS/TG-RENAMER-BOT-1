@@ -45,8 +45,11 @@ async def force_sub(c, m):
 @RenamerNs.on_message(~filters.chat(chats=Config.AUTH_GROUP))
 async def spam_user(c, m):
     button = [[
-        InlineKeyboardButton('Repo', url='https://github.com/Ns-Bots/TG-RENAMER-BOT')
-        InlineKeyboardButton('Deploy', url='')
+        InlineKeyboardButton('Repo', url='https://github.com/Ns-Bots/TG-RENAMER-BOT'),
+        InlineKeyboardButton('Deploy', url='https://heroku.com/deploy?template=https://github.com/Ns-Bots/TG-RENAMER-BOT')
+        ],[
+        InlineKeyboardButton('Repo For Group',  url='https://github.com/Ns-Bots/TG-RENAMER-BOT/tree/for-group'),
+        InlineKeyboardButton('Deploy For Group', url='https://heroku.com/deploy?template=https://github.com/Ns-Bots/TG-RENAMER-BOT/tree/for-group')
     ]]
     await m.reply_text("I wont work for you. If you want make your own bot", reply_markup=InlineKeyboardMarkup(buttons))
     await m.chat.leave()
