@@ -35,6 +35,30 @@ def main():
         & filters.chat(chats=Config.AUTH_GROUP),
     ))
 
+    Renamer.add_handler(MessageHandler(
+        help,
+        filters=filters.command(['help', f'help@{me.username}'])
+        & filters.chat(chats=Config.AUTH_GROUP),
+    ))
+
+    Renamer.add_handler(MessageHandler(
+        about,
+        filters=filters.command(['about', f'about@{me.username}'])
+        & filters.chat(chats=Config.AUTH_GROUP),
+    ))
+
+    Renamer.add_handler(MessageHandler(
+        start,
+        filters=filters.command(['start', f'start@{me.username}'])
+        & filters.chat(chats=Config.AUTH_GROUP),
+    ))
+
+    Renamer.add_handler(MessageHandler(
+        media,
+        filters=filters.command(['mode', f'mode@{me.username}'])
+        & filters.chat(chats=Config.AUTH_GROUP),
+    ))
+
     startup_msg = f"Successfully deployed your Renamer at @{me.username}\n"
     startup_msg += f"Pyrogram Version: V{__version__}\n"
     startup_msg += f"Python Version: V{platform.python_version()}\n\n"
