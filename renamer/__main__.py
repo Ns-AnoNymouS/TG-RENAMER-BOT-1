@@ -11,7 +11,7 @@ logging.getLogger().setLevel(logging.WARNING)
 
 import platform
 from .plugins import *
-from .config import Config as *
+from .config import Config
 from pyrogram import Client, __version__, idle
 from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from pyromod import listen
@@ -20,9 +20,9 @@ from pyromod import listen
 def main():
 
     Renamer = Client("Renamer_NsBot",
-                 bot_token=BOT_TOKEN,
-                 api_id=API_ID,
-                 api_hash=API_HASH,
+                 bot_token=Config.BOT_TOKEN,
+                 api_id=Config.API_ID,
+                 api_hash=Config.API_HASH,
                  plugins=dict(root="renamer/plugins"),
                  workers=100)
 
@@ -32,7 +32,7 @@ def main():
     Renamer.add_handler(MessageHandler(
         media,
         filters=filters.command(['rename', f'rename@{me.username}'])
-        & filters.chat(chats=AUTH_GROUP),
+        & filters.chat(chats=Config.AUTH_GROUP),
     ))
 
     startup_msg = f"Successfully deployed your Renamer at @{me.username}\n"
