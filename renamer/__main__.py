@@ -10,6 +10,7 @@ logging.getLogger().setLevel(logging.ERROR)
 logging.getLogger().setLevel(logging.WARNING)
 
 import platform
+from .plugins import *
 from .config import Config
 from pyrogram import Client, __version__, idle
 from pyrogram.handlers import CallbackQueryHandler, MessageHandler
